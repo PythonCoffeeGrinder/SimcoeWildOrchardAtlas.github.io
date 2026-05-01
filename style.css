@@ -113,15 +113,16 @@ main {
 ========================= */
 
 .leaflet-popup-content-wrapper {
-  max-width: 90%;
-  max-height: calc(100vh - 90px);
+  max-width: min(90%, 420px);
+  width: auto;
+  max-height: min(calc(100vh - 90px), 100%);
   overflow: hidden;
   border-radius: 16px;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
 }
 
 .leaflet-popup-content {
-  max-height: calc(100vh - 140px);
+  max-height: calc(100% - 38px);
   overflow-y: auto;
   padding: 14px 16px;
   line-height: 1.6;
