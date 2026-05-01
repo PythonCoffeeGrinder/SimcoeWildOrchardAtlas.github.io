@@ -112,12 +112,39 @@ main {
    POPUP STYLING (Leaflet)
 ========================= */
 
+.leaflet-popup-content-wrapper {
+  max-height: calc(100vh - 90px);
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+}
+
+.leaflet-popup-content {
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  padding: 14px 16px;
+  line-height: 1.6;
+  overscroll-behavior: contain;
+}
+
+.leaflet-popup-content h3 {
+  margin-bottom: 0.75rem;
+  color: #23473d;
+  font-size: 1.15rem;
+}
+
+.leaflet-popup-content p,
+.leaflet-popup-content div {
+  margin-bottom: 0.8rem;
+}
+
 .popup-img {
   width: 100%;
-  height: 120px;
+  height: auto;
+  max-height: 220px;
   object-fit: cover;
-  margin-top: 6px;
-  border-radius: 8px;
+  margin-top: 10px;
+  border-radius: 10px;
 }
 
 /* =========================
