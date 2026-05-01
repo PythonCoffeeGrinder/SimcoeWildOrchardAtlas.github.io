@@ -201,4 +201,20 @@ main {
   #map {
     height: 60vh;
   }
+
+  .leaflet-popup-content-wrapper {
+    max-width: min(90%, 280px);
+    max-height: 40vh;
+  }
+
+  .leaflet-popup-content {
+    padding: 12px 14px;
+  }
+
+  .popup-img {
+    width: 20%;
+    max-width: 80px;
+    max-height: 90px;
+  }
 }
+
