@@ -113,6 +113,7 @@ main {
 ========================= */
 
 .leaflet-popup-content-wrapper {
+  max-width: 90%;
   max-height: calc(100vh - 90px);
   overflow: hidden;
   border-radius: 16px;
@@ -125,6 +126,8 @@ main {
   padding: 14px 16px;
   line-height: 1.6;
   overscroll-behavior: contain;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .leaflet-popup-content h3 {
