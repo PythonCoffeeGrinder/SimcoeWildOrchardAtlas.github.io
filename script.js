@@ -12,6 +12,19 @@ async function loadTrees() {
     const response = await fetch("trees.json");
     const data = await response.json();
 
+    function getPopupOptions() {
+      return {
+        maxWidth: 380,
+        maxHeight: Math.max(map.getSize().y - 40, 180),
+        autoPan: true,
+        autoPanPadding: [16, 16],
+        autoPanPaddingTopLeft: [16, 16],
+        autoPanPaddingBottomRight: [16, 16],
+        keepInView: true,
+        closeButton: true
+      };
+    }
+
     L.geoJSON(data, {
       onEachFeature: function (feature, layer) {
         const props = feature.properties;
@@ -40,18 +53,17 @@ async function loadTrees() {
           </div>
         `;
 
-        layer.bindPopup(popupContent, {
-          maxWidth: 380,
-          maxHeight: 320,
-          autoPan: true,
-          autoPanPadding: [16, 16],
-          autoPanPaddingTopLeft: [16, 16],
-          autoPanPaddingBottomRight: [16, 16],
-          keepInView: true,
-          closeButton: true
-        });
+        layer.bindPopup(popupContent, getPopupOptions());
       }
     }).addTo(map);
+
+    map.on('popupopen', function (e) {
+      const currentHeight = Math.max(map.getSize().y - 40, 180);
+      e.popup.options.maxHeight = currentHeight;
+      if (typeof e.popup.update === 'function') {
+        e.popup.update();
+      }
+    });
 
   } catch (error) {
     console.error("Error loading trees.json:", error);
