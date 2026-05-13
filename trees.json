@@ -13,6 +13,12 @@
         "discoverer_name": "Admin",
         "tree_type": "Apple",
 
+        "apple_sweetness": "Sweet",
+        "apple_sourness": "Moderate",
+        "apple_texture": "Crisp",
+        "apple_description": "A delicious heirloom apple variety with excellent flavor",
+        "eat_again": "Yes",
+
         "tree_picture_url": "images/tree1.jpg",
 
         "flowering_time": "May",
