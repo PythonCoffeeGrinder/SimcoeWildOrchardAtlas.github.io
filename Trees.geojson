@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "Trees",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": 2, "Name": "AppleTreeMcAppleFace", "Sweetness": 1, "Sourness": 2, "Texture": 3, "Descript": 4, "EatAgain": 1, "Long": -79.692432, "Lat": 44.36837882, "TreeImg": "images/tree1.jpg", "FlowrImg": "images/flower1.jpg", "FruitImg": "fruit1.jpg", "Notes": "Found near in community orchard on south side of Shear Park. See website for more info on Barrie's Community Orchard : https://www.barrie.ca/community-recreation-environment/parks-trails-waterfront/community-orchards-food-forests" }, "geometry": { "type": "Point", "coordinates": [ -79.692432059126403, 44.368378823512195 ] } }
+]
+}
