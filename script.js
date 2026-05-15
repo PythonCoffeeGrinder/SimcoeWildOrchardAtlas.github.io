@@ -10,7 +10,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 async function loadTrees() {
   try {
     console.log("Starting to load trees...");
-    const response = await fetch("trees.json");
+    const response = await fetch("Trees.geojson");
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -51,32 +51,57 @@ async function loadTrees() {
       onEachFeature: function (feature, layer) {
         const props = feature.properties;
 
+        // Mapping functions for numeric values
+        function getSweetnessText(value) {
+          const map = { 1: 'Not Sweet', 2: 'A little sweet', 3: 'Sweet', 4: 'Very Sweet' };
+          return map[value] || value;
+        }
+
+        function getSournessText(value) {
+          const map = { 1: 'Not Sour', 2: 'A little sour', 3: 'Sour', 4: 'Very Sour' };
+          return map[value] || value;
+        }
+
+        function getTextureText(value) {
+          const map = { 1: 'Soft', 2: 'Crisp', 3: 'Crunchy', 4: 'Juicy' };
+          return map[value] || value;
+        }
+
+        function getDescriptionText(value) {
+          const map = { 1: 'Fresh', 2: 'Tart', 3: 'Sweet', 4: 'Juicy' };
+          return map[value] || value;
+        }
+
+        function getEatAgainText(value) {
+          const map = { 1: 'No', 2: 'Maybe', 3: 'Yes', 4: 'Definitely Yes' };
+          return map[value] || value;
+        }
+
         const popupContent = `
           <div>
-            <h3>${props.tree_name}</h3>
-            ${props.apple_sweetness ? `<p><strong>Apple Sweetness:</strong> ${props.apple_sweetness}</p>` : ''}
-            ${props.apple_sourness ? `<p><strong>Apple Sourness:</strong> ${props.apple_sourness}</p>` : ''}
-            ${props.apple_texture ? `<p><strong>Apple Texture:</strong> ${props.apple_texture}</p>` : ''}
-            ${props.apple_description ? `<p><strong>Apple Description:</strong> ${props.apple_description}</p>` : ''}
-            ${props.eat_again ? `<p><strong>Would you eat it again?</strong> ${props.eat_again}</p>` : ''}
+            <h3>${props.Name}</h3>
+            ${props.Sweetness ? `<p><strong>Apple Sweetness:</strong> ${getSweetnessText(props.Sweetness)}</p>` : ''}
+            ${props.Sourness ? `<p><strong>Apple Sourness:</strong> ${getSournessText(props.Sourness)}</p>` : ''}
+            ${props.Texture ? `<p><strong>Apple Texture:</strong> ${getTextureText(props.Texture)}</p>` : ''}
+            ${props.Descript ? `<p><strong>Apple Description:</strong> ${getDescriptionText(props.Descript)}</p>` : ''}
+            ${props.EatAgain ? `<p><strong>Would you eat it again?</strong> ${getEatAgainText(props.EatAgain)}</p>` : ''}
 
             <div>
               <strong>Tree Image:</strong><br/>
-              <img class="popup-img" src="${props.tree_picture_url}" alt="tree image"/>
+              <img class="popup-img" src="${props.TreeImg}" alt="tree image"/>
             </div>
 
             <div>
               <strong>Flower Image:</strong><br/>
-              <img class="popup-img" src="${props.flower_picture_url}" alt="flower image"/>
+              <img class="popup-img" src="${props.FlowrImg}" alt="flower image"/>
             </div>
 
             <div>
               <strong>Fruit Image:</strong><br/>
-              <img class="popup-img" src="${props.fruit_picture_url}" alt="fruit image"/>
+              <img class="popup-img" src="${props.FruitImg}" alt="fruit image"/>
             </div>
 
-            ${props.discovery_date ? `<p><strong>Date:</strong> ${props.discovery_date}</p>` : ''}
-            ${props.misc_info ? `<p><em>${props.misc_info}</em></p>` : ''}
+            ${props.Notes ? `<p><em>${props.Notes}</em></p>` : ''}
           </div>
         `;
 
@@ -95,7 +120,7 @@ async function loadTrees() {
     });
 
   } catch (error) {
-    console.error("Error loading trees.json:", error);
+    console.error("Error loading Trees.geojson:", error);
   }
 }
 
